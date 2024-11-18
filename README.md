@@ -8,6 +8,9 @@ El ataque consta de 3 etapas:
 ## Etapa 1: Acceso a la red Wi-Fi de la Torre de Control
 En un computador con sistema operativo Linux (puede ser cualquier distribución: Ubuntu, Kali, etc.) descargar el diccionario de contraseñas `rockyou.txt`. Este se puede descargar en el primer enlace que se obtiene al buscar "rockyou descargar" en Google, correspondiente a un link de GitHub.
 
+> [!IMPORTANT]
+> Dado que para esta etapa necesitamos una interfaz de red, debemos realizar este procedimiento desde una máquina Linux, es decir, no es posible realizarlo desde una Virtual Machine. En caso de contar únicamente con una computadora Windows, se recomienda instalar Linux en Dual Boot.
+
 Luego, en la terminal de la misma computadora ejecutar los siguientes comandos:
 ```
 cd Descargas/
@@ -86,3 +89,21 @@ Con esto, comienza el ataque por fuerza bruta. Trascurridos varios minutos (alre
 ```
 sudo airmon-ng stop <nombre_interfaz>mon
 ```
+
+## Etapa 2: Detectar una máquina de la torre de control y acceder a ella mediante control remoto
+
+Esta etapa debe realizarse desde una máquina Kali Linux.
+
+> [!IMPORTANT]
+> La máquina objetivo (es decir, la computadora a secuestrar) debe tener sistema operativo Windows y debe tener activada la opción de control remoto.
+
+> [!NOTE]
+> Una vez generado el acceso remoto a la computadora, la pantalla de esta en la torre de control se pondrá en negro, lo que podría dar pistas de que está ocurriendo un ciberataque.
+
+## Etapa 3: Utilizando la máquina secuestrada, alterar las funciones del avión
+
+Se presentan tres alternativas:
+* Escribir un software que simule los subsistemas del avión utilizando Dockers y comunicándolos entre sí mediante RabbitMQ. Utilizando herramientas de Pentesting, analizar y explotar las vulnerabilidades de este sistema.
+* Hacer un montaje de un ataque, escribiendo un programa simple en Python que reciba un input y, a partir de este, muestre videos emulando un ataque.
+* Escribir un software más simple que la primera opción, el cual simule la comunicación entre el avión y la torre de control. Con el ataque a la computadora, desactivar la comunicación.
+
